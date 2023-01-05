@@ -1,30 +1,30 @@
-export const getSavedHomeIds = () => {
-    const SavedHomeIds = localStorage.getItem('saved_homes')
-      ? JSON.parse(localStorage.getItem('saved_homess'))
+export const getSavedShelterIds = () => {
+    const SavedShelterIds = localStorage.getItem('saved_shelters')
+      ? JSON.parse(localStorage.getItem('saved_shelters'))
       : [];
   
-    return SavedHomeIds;
+    return SavedShelterIds;
   };
 
-  export const saveHomeIds = (homeArr) => {
-    if (homeArr.length) {
-      localStorage.setItem('saved_homes', JSON.stringify(homeArr));
+  export const saveShelterIds = (shelterArr) => {
+    if (shelterArr.length) {
+      localStorage.setItem('saved_shelters', JSON.stringify(shelterArr));
     } else {
-      localStorage.removeItem('saved_homes');
+      localStorage.removeItem('saved_shelters');
     }
   };
 
-  export const removeHomeId = (homeId) => {
-    const savedHomeIds = localStorage.getItem('saved_homes')
-      ? JSON.parse(localStorage.getItem('saved_homes'))
+  export const removeShelterId = (shelterId) => {
+    const savedShelterIds = localStorage.getItem('saved_shelters')
+      ? JSON.parse(localStorage.getItem('saved_shelters'))
       : null;
   
-    if (!savedHomeIds) {
+    if (!savedShelterIds) {
       return false;
     }
 
-    const updatedSavedHomeIds = savedHomeIds?.filter((savedHomeId) => savedHomeId !== homeId);
-  localStorage.setItem('saved_trails', JSON.stringify(updatedSavedHomeIds));
+    const updatedSavedShelterIds = savedShelterIds?.filter((savedShelterId) => savedShelterId !== shelterId);
+  localStorage.setItem('saved_shelters', JSON.stringify(updatedSavedShelterIds));
 
   return true;
 };
