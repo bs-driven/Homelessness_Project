@@ -25,6 +25,7 @@ export default function PageContainer (){
           if (currentPage === 'Signup') {
             return < Signup />
           }
+          return <Home />
 
     };
 

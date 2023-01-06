@@ -27,8 +27,8 @@ const SignupForm = () => {
     }
   }, [error]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 
     setUserFormData({...userFormData, [name]: value });
     

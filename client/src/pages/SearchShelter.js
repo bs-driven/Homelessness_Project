@@ -3,12 +3,14 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import Auth from '../utils/auth';
 import { saveShelter, shelterSearch } from '../utils/API';
 import { saveShelterIds, getSavedShelterIds } from '../utils/localStorage';
+import { useMutation } from '@apollo/client';
 
 
 const SearchShelter = () => {
     const [searchedShelter, setSearchedShelters] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [savedShelterIds, setsaveShelterIds] = useState(getSavedShelterIds());
+    // const  [savedShelter, { error }] =useMutation()
     useEffect(() => {
         return () => saveShelterIds(savedShelterIds);
     });
