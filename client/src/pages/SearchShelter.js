@@ -8,13 +8,13 @@ import { saveShelterIds, getSavedShelterIds } from '../utils/localStorage';
 const SearchShelter = () => {
     const [searchedShelter, setSearchedShelters] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [savedShelterIds, setShelterids] = useState(getSavedShelterIds());
+    const [savedShelterIds, setsaveShelterIds] = useState(getSavedShelterIds());
     useEffect(() => {
         return () => saveShelterIds(savedShelterIds);
     });
 
     const handleFormSubmit = async (e) =>{
-        e.preventDefalut();
+        // e.preventDefalut();
 
         if(!searchInput){
             return false;
@@ -47,22 +47,25 @@ const SearchShelter = () => {
 
     const handleSaveShelter = async (shelterId) => {
         const shelterToSave = searchedShelter.find((shelter) => shelter.shelterId === shelterId);
-
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
             return false;
         }
+
         try {
             const response = await saveShelter(shelterToSave, token);
             if (!response.ok){
                 throw new Error('something went wrong');
             }
-            setSavedShelterId([...savedShelterIds, shelterToSave.shelterId]);
+
+            setsaveShelterIds([...savedShelterIds, shelterToSave.shelterId]);
+
         } catch (err) {
-            console.error(err);
+            // console.error(err);
         }
     };
+    
     return (
         <>
         <Jumbotron fluid className = 'text-light bg-dark'><Container>
@@ -76,12 +79,12 @@ const SearchShelter = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a book'
+                  placeholder='City'
                 />
               </Col>
               <Col xs={12} md={4}>
                 <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                  Search
                 </Button>
               </Col>
             </Form.Row>
@@ -94,22 +97,22 @@ const SearchShelter = () => {
                 {searchedShelter.length ? `Viewing ${searchedShelter.length} results:` : 'Search for a shelter again'}
             </h2>
             <CardColumns>
-                {searchedShelter.map((shelter) => {
+                {searchedShelter.map((shelterData) => {
                     return(
-                        <Card key ={shelter.shelterId} border = 'dark'>
+                        <Card key ={shelterData.shelterId} border = 'dark'>
                             <Card.Body>
-                                <Card.Title>{shelter.provider}</Card.Title>
+                                <Card.Title>{shelterData.provider}</Card.Title>
                                 <Card.Text>
-                                    {shelter.city}','{shelter.state}
-                                    {shelter.address}
-                                    {shelter.numberOfBeds}
-                                    {shelter.ageServred}
-                                    {shelter.web_url}
+                                {shelterData.city}','{shelterData.state}
+                                Address:{shelterData.address}
+                                Number of beds avaliable:{shelterData.numberOfBeds}
+                                Ages served:{shelterData.ageServred}
+                                Website:{shelterData.web_url}
                                     </Card.Text>
                                     {Auth.loggedIn() && (
-                                        <Button  disabled={savedShelterIds?.some((savedShelterId) => savedShelterId === shelter.shelterId)}
-                                        className= 'btn-block btn-info' onClick= {() => handleSaveShelter(shelter.shelterId)}>
-                                            {savedShelterIds?.some((savedShelterId) => savedShelterId === shelter.shelterId)? 'This shelter has been saved already.' :'Save this Shelter'}
+                                        <Button  disabled={savedShelterIds?.some((savedShelterId) => savedShelterId === shelterData.shelterId)}
+                                        className= 'btn-block btn-info' onClick= {() => handleSaveShelter(shelterData.shelterId)}>
+                                            {savedShelterIds?.some((savedShelterId) => savedShelterId === shelterData.shelterId)? 'This shelter has been saved already.' :'Save this Shelter'}
                                         </Button>
                                     )}
                             </Card.Body>

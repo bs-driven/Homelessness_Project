@@ -29,5 +29,4 @@ function NavBar({ currentPage, handlePageChange }){
 
     )
 } 
-export default Navbar
-;
+export default NavBar;

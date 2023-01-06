@@ -55,8 +55,8 @@ export const REMOVE_SHELTER =gql`
 `;
 
 export const NEW_SHELTER = gql`
-    mutation newHome($profileId: ID!){
-        newHome(profileId: $profileId){
+    mutation newshelter($profileId: ID!){
+        newshelter(profileId: $profileId){
             token
             shelter {
                 _id

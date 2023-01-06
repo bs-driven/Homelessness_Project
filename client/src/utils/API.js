@@ -48,6 +48,6 @@ export const getMe = (token) => {
   };
 
   export const shelterSearch = (query) => {
-    return fetch (`https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Service_WebMercator/MapServer/25/query?where=1%3D1&outFields=PROVIDER,ADDRESS,CITY,STATE,TYPE,STATUS,NUMBER_OF_BEDS,LGBTQ_FOCUSED,NAME,ZIPCODE,WEB_URL,AGES_SERVED&outSR=4326&f=json`)
+    return fetch (`https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Service_WebMercator/MapServer/25/query?where=CITY%20%3D%20'${query}'&outFields=*&outSR=4326&f=json`)
   }
   
