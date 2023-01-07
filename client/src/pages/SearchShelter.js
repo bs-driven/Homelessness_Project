@@ -3,7 +3,6 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import Auth from '../utils/auth';
 import { saveShelter, shelterSearch } from '../utils/API';
 import { saveShelterIds, getSavedShelterIds } from '../utils/localStorage';
-import { useMutation } from '@apollo/client';
 
 
 const SearchShelter = () => {
