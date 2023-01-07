@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-
 const shelterSchema = require('./Shelter');
 
 
@@ -10,12 +9,13 @@ const userSchema = new Schema(
         type: String,
         required: true,
         unique: true,
+        trim: true,
       },
       email: {
         type: String,
         required: true,
         unique: true,
-        match: [/.+@.+\..+/, 'Must use a valid email address'],
+        match: [/[\w.]+@\w\.\w{3}/, 'Unacceptable Email. Try Again.'],
       },
       password: {
         type: String,
@@ -24,12 +24,6 @@ const userSchema = new Schema(
       // set savedBooks to be an array of data that adheres to the bookSchema
       savedShelters: [shelterSchema],
     },
-    // set this to use virtual below
-    {
-      toJSON: {
-        virtuals: true,
-      },
-    }
   );
 
   // hash user password

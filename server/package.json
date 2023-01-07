@@ -1,5 +1,5 @@
 {
-    "name": "homelness_project",
+    "name": "homelessness_project",
     "version": "0.1.0",
     "description": "",
     "main": "server.js",
@@ -15,12 +15,11 @@
     "scripts": {
         "start": "node server.js",
         "watch": "nodemon",
-        "seed": "node seed.js"
+        "seed": "node seeds.json"
     },
 
     "devDependencies": {
         "nodemon": "^2.0.3"
     }
-
 
 }
