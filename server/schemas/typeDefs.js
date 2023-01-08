@@ -19,12 +19,16 @@ type Auth{
     token: ID!
     user: User
 }
+type Query {
+    users:[User]
+    shelter(_id: String): [Shelters]
+}
 type Mutation{
     login( email: String!, password: String): Auth
     addUser( userName: String!, email: String!, password: String!): Auth
     removeUser( userName: String!, email: String!, password: String!): Auth
-    addShelter( userId: ID!, shelter:Shelters): User
-    removeShelter(userId: ID!, shelter:Shelters): User
+    addShelter( userId: ID!, shelter:String!): User
+    removeShelter(userId: ID!, shelter:String!): User
 }
 `;
 module.exports = typeDefs;

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
- mongoose.connect(
+ 
+mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/Homelessness_project', {
         useNewUrlParser: true,
         useUnifiedTopology: true,

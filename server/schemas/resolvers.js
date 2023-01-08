@@ -8,8 +8,9 @@ const resolvers ={
             return User.find();
         },
         
-        user: async (parent, {userId}) => {
-            return User.findOne({_id: userId})
+        shelter: async (parent, { userId }) => {
+            const params = userId ? { userId } : {};
+            return Shelters.find(params)
         },
     },
 
@@ -22,7 +23,7 @@ const resolvers ={
         login: async ( parent, { email, password }) => {
             const user = await User.findOne({ email });
 
-            if(!profile) {
+            if(!user) {
                 throw new AuthenticationError('Incorrect email');
             }
             const correctPassword = await user.isCorrectPaaaword(password);
@@ -58,7 +59,7 @@ const resolvers ={
         }
         throw new AuthenticationError('Log in first')
         }
+    },
+};
 
-
-    }
-}
+module.exports = resolvers;
