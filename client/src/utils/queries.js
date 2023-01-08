@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client";
 
-export const GET_ME = gql`
-    query me {
+export const QUERY_USER = gql`
+    query user {
         user {
             _id
             username
-            savedShelter {
+            email
+            shelters {
                 provider
                 address
                 city
@@ -19,8 +20,9 @@ export const GET_ME = gql`
 `;
 
 export const FIND_Shelter = gql`
-    query saveShelter {
-        savedShelter {
+    query shelters($_id: String) {
+        shelters(_id: $id) {
+            _id
             provider
             address
             city

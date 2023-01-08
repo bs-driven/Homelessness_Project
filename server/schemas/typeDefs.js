@@ -9,22 +9,22 @@ type User {
 }
 type Shelters {
     _id: ID!
-    provide: String
+    provide: String!
     city: String!
     state: String!
     numberOfBeds: Int
-    web_url: String
+    web_url: String!
 }
 type Auth{
     token: ID!
-    user: User
+    user: [User]
 }
 type Query {
-    users:[User]
+    user:[User]
     shelter(_id: String): [Shelters]
 }
 type Mutation{
-    login( email: String!, password: String): Auth
+    login( email: String!, password: String!): Auth
     addUser( userName: String!, email: String!, password: String!): Auth
     removeUser( userName: String!, email: String!, password: String!): Auth
     addShelter( userId: ID!, shelter:String!): User
