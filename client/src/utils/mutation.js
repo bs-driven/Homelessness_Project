@@ -4,7 +4,7 @@ export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      profile {
+      user {
         _id
         email
       }
@@ -14,19 +14,19 @@ export const LOGIN_USER = gql`
 
 export const ADD_USER = gql`
   mutation addUser($name: String!, $email: String!, $password: String!) {
-    addUser(name: $name, email: $email, password: $password) {
+    addUser(userName: $name, email: $email, password: $password) {
       token
-      profile {
+      user {
         _id
-        name
+        userName
       }
     }
   }
 `;
 
 export const ADD_SHELTER = gql`
-    mutation addShelter($profileId: ID!){
-        addShelter(profileId: $profileId){
+    mutation addShelter($userId: ID!){
+        addShelter(userId: $userId){
             token
             profile {
                 _id
@@ -40,8 +40,8 @@ export const ADD_SHELTER = gql`
 `;
 
 export const REMOVE_SHELTER =gql`
-    mutation removeShelter($profileId: ID!){
-        removeShelter(profileId: $profileId){
+    mutation removeShelter($shelterId: ID!){
+        removeShelter(shelterId: $shelterId){
             token
             profile {
                 _id
@@ -55,8 +55,8 @@ export const REMOVE_SHELTER =gql`
 `;
 
 export const NEW_SHELTER = gql`
-    mutation newshelter($profileId: ID!){
-        newshelter(profileId: $profileId){
+    mutation newshelter($shelterId: ID!){
+        newshelter(shelterId: $shelterId){
             token
             shelter {
                 _id
